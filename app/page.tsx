@@ -1,10 +1,5 @@
+import DiningHallMenu from "./DiningHallMenu";
 
 export default function Home() {
-  return (
-    <div>
-      <p>
-        Hello World
-      </p>
-    </div>
-  );
+  return <DiningHallMenu />;
 }
