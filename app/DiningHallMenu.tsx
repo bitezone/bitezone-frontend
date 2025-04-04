@@ -1,18 +1,40 @@
 // components/DiningHallMenu.tsx
 "use client";
 import { Table, TableBody, TableCell, TableRow } from "@/components/ui/table";
-import { menuItems } from "@/data/menu";
+import axios from "axios";
 import { motion } from "framer-motion";
 
-import React from "react"; 
+import React, { useEffect, useState } from "react";
 
 // 🌿 Main Dining Menu Component
 const DiningHallMenu = () => {
   return (
     <div className="min-h-screen bg-green-50 p-6 flex flex-col items-center gap-6">
       <Navigation />
-      <div className="w-full">
-        {menuItems.map((item, key) => (
+      <MenuTable />
+    </div>
+  );
+};
+
+const MenuTable = () => {
+  const [menuItems, setmenuItems] = useState<null | MenuTableProp[]>(null);
+
+  useEffect(() => {
+    axios.get(`${process.env.BACKEND_URL}/items`).then((res) => {
+      setmenuItems(res.data);
+    });
+  }, []);
+
+  if (!menuItems)
+    return (
+      <div>
+        <p>Loading..</p>
+      </div>
+    );
+  return (
+    <div className="w-full">
+      {menuItems &&
+        menuItems.map((item, key) => (
           <motion.div
             key={key}
             initial={{ opacity: 0, y: 30 }}
@@ -23,7 +45,6 @@ const DiningHallMenu = () => {
             <MenuTables item={item} />
           </motion.div>
         ))}
-      </div>
     </div>
   );
 };
@@ -62,7 +83,7 @@ const MenuTables: React.FC<{ item: MenuTableProp }> = ({ item }) => {
 
   return (
     <div className="bg-white shadow-md rounded-xl p-4 mt-4 border border-green-100">
-      <h2 className="text-lg font-semibold text-green-700 mb-3 border-b border-green-200 pb-1">
+      <h2 className="text-lg font-semibold text-green-700 mb-3 border-b border-green-200 pb-1 pointer-events-none">
         {category}
       </h2>
 
@@ -71,9 +92,9 @@ const MenuTables: React.FC<{ item: MenuTableProp }> = ({ item }) => {
           {menu_items.map((menu_item, index) => (
             <TableRow
               key={index}
-              className="hover:bg-green-50 transition duration-200"
+              className="hover:bg-green-50 transition duration-200 "
             >
-              <TableCell className="text-green-900 text-sm whitespace-normal">
+              <TableCell className="text-green-900 text-sm whitespace-normal border-b-green-900 cursor-default">
                 {menu_item}
               </TableCell>
             </TableRow>
