@@ -1,106 +1,15 @@
 // components/DiningHallMenu.tsx
-"use client";
-import { Table, TableBody, TableCell, TableRow } from "@/components/ui/table";
-import axios from "axios";
-import { motion } from "framer-motion";
+"use client"
+import MealTimeSelector from "@/components/ui/MenuPage/MealTimeSelector";
+import MenuNavigation from "@/components/ui/MenuPage/MenuNavigation";
+import MenuTable from "@/components/ui/MenuPage/MenuTable";
 
-import React, { useEffect, useState } from "react";
-
-// 🌿 Main Dining Menu Component
 const DiningHallMenu = () => {
   return (
-    <div className="min-h-screen bg-green-50 p-6 flex flex-col items-center gap-6">
-      <Navigation />
+    <div className="min-h-screen bg-green-50 p-6 flex flex-col items-center gap-5">
+      <MenuNavigation />
+      <MealTimeSelector />
       <MenuTable />
-    </div>
-  );
-};
-
-const MenuTable = () => {
-  const [menuItems, setmenuItems] = useState<null | MenuTableProp[]>(null);
-
-  useEffect(() => {
-    axios.get(`${process.env.BACKEND_URL}/items`).then((res) => {
-      setmenuItems(res.data);
-    });
-  }, []);
-
-  if (!menuItems)
-    return (
-      <div>
-        <p>Loading..</p>
-      </div>
-    );
-  return (
-    <div className="w-full">
-      {menuItems &&
-        menuItems.map((item, key) => (
-          <motion.div
-            key={key}
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.4, delay: key * 0.1 }}
-            className="w-full max-w-5xl mx-auto"
-          >
-            <MenuTables item={item} />
-          </motion.div>
-        ))}
-    </div>
-  );
-};
-
-// 🍽️ Top Navigation
-const Navigation = () => {
-  return (
-    <div className="w-full max-w-3xl bg-white rounded-xl shadow-sm p-6 border border-green-100 flex flex-col md:flex-row justify-between items-center gap-4">
-      <h1 className="text-2xl font-bold text-green-800 text-center tracking-tight">
-        Lakeside Dining Hall
-      </h1>
-      <div className="flex items-center gap-4">
-        <button className="px-4 py-2 bg-green-100 hover:bg-green-200 text-green-800 text-sm rounded-md transition">
-          Prev
-        </button>
-        <div className="text-green-900 text-center">
-          <p className="font-medium">April 2, 2024</p>
-          <p className="text-sm text-green-600">(Tuesday)</p>
-        </div>
-        <button className="px-4 py-2 bg-green-100 hover:bg-green-200 text-green-800 text-sm rounded-md transition">
-          Next
-        </button>
-      </div>
-    </div>
-  );
-};
-
-// 📝 Menu Table Component
-interface MenuTableProp {
-  category: string;
-  menu_items: string[];
-}
-
-const MenuTables: React.FC<{ item: MenuTableProp }> = ({ item }) => {
-  const { category, menu_items } = item;
-
-  return (
-    <div className="bg-white shadow-md rounded-xl p-4 mt-4 border border-green-100">
-      <h2 className="text-lg font-semibold text-green-700 mb-3 border-b border-green-200 pb-1 pointer-events-none">
-        {category}
-      </h2>
-
-      <Table>
-        <TableBody>
-          {menu_items.map((menu_item, index) => (
-            <TableRow
-              key={index}
-              className="hover:bg-green-50 transition duration-200 "
-            >
-              <TableCell className="text-green-900 text-sm whitespace-normal border-b-green-900 cursor-default">
-                {menu_item}
-              </TableCell>
-            </TableRow>
-          ))}
-        </TableBody>
-      </Table>
     </div>
   );
 };
