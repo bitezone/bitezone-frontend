@@ -55,8 +55,14 @@ const MenuTable: React.FC<MenuTableProps> = ({
           const preferredOrder: string[] = [
             "Entree",
             "Accompaniments",
+            "Grill Station", 
+            "Salad of the Day", 
+            "Panini of the Week",
+            "Bakery",
+            "Eggs/Breakfast",
+            "Soup of the Day", 
             "Dessert",
-          ]; // Customize this
+          ]; 
 
           // Group menu items by category
           const grouped: GroupedItems = res.data[0]["menu_items"].reduce(
