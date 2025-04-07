@@ -7,7 +7,7 @@ import { useState } from "react";
 
 const DiningHallMenu = () => {
   const [menuDate, setMenuDate] = useState<Date>(new Date());
-  const [menuTime, setMenuTime] = useState<string>("lunch");
+  const [menuTime, setMenuTime] = useState<string>("");
   const [menuLocation, setMenuLocation] = useState<string>("lakeside");
 
   return (
@@ -20,7 +20,12 @@ const DiningHallMenu = () => {
         menuTime={menuTime}
         menuLocation={menuLocation}
       />
-      <MealTimeSelector setMenuTime={setMenuTime} menuTime={menuTime} />
+      <MealTimeSelector
+        setMenuTime={setMenuTime}
+        menuTime={menuTime}
+        menuDate={menuDate}
+        menuLocation={menuLocation}
+      />
       <MenuTable
         menuDate={menuDate}
         menuTime={menuTime}

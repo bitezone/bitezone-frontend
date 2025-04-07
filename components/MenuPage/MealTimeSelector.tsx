@@ -1,5 +1,5 @@
 "use client";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Card, CardContent } from "@/components/ui/card";
 import { Clock, Coffee, Utensils, UtensilsCrossed } from "lucide-react";
 import { Tabs, TabsList, TabsTrigger } from "../ui/tabs";
@@ -12,22 +12,69 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
+import axios from "axios";
 type MealTimeSelectorProps = {
   setMenuTime: React.Dispatch<React.SetStateAction<string>>;
   menuTime: string;
+  menuDate: Date;
+  menuLocation: string;
 };
+
+interface MenuBasic {
+  id: number;
+  date: string;
+  meal_location: string;
+  meal_time: string;
+}
 
 const MealTimeSelector: React.FC<MealTimeSelectorProps> = ({
   setMenuTime,
   menuTime,
+  menuDate,
+  menuLocation,
 }) => {
+  const [availableMenuTimes, setAvailableMenuTimes] = useState<string[] | null>(
+    null
+  );
+  useEffect(() => {
+    axios
+      .get(`${process.env.BACKEND_URL}/api/menu/get_menu_times`, {
+        params: {
+          meal_location: menuLocation,
+          date: menuDate.toLocaleDateString("en-CA", {
+            year: "numeric",
+            month: "2-digit",
+            day: "2-digit",
+          }),
+        },
+      })
+      .then((res) => {
+        const arr: string[] = [];
+        res.data.forEach((menuTimeObject: MenuBasic) => {
+          arr.push(menuTimeObject.meal_time);
+        });
+        setAvailableMenuTimes(arr);
+      });
+  }, [menuDate, menuLocation]);
+
+  useEffect(() => {
+    if (
+      availableMenuTimes &&
+      availableMenuTimes.length > 0 &&
+      !availableMenuTimes.includes(menuTime)
+    ) {
+      setMenuTime(availableMenuTimes[0]);
+    }
+  }, [availableMenuTimes, menuTime, setMenuTime]);
   return (
     <div className="w-full max-w-3xl">
       <Card className=" shadow-sm  bg-white rounded-xl p-6 border border-green-100  flex-col md:flex-row justify-between items-center gap-4">
         <CardContent className=" p-4 w-full">
           <div className="flex items-center gap-2 mb-3 justify-center">
             <Clock className="h-4 w-4 text-green-700" />
-            <h2 className="font-medium text-green-800">Select Meal Time</h2>
+            <h2 className="font-medium text-green-800">
+              Select Meal Time: {menuTime}
+            </h2>
           </div>
 
           {/* Starting from medium device */}
@@ -36,28 +83,17 @@ const MealTimeSelector: React.FC<MealTimeSelectorProps> = ({
             onValueChange={setMenuTime}
             className="hidden md:flex"
           >
-            <TabsList className="grid grid-cols-3 bg-green-50 w-full">
-              <TabsTrigger
-                value="breakfast"
-                className="data-[state=active]:bg-green-600 data-[state=active]:text-white flex flex-row items-center"
-              >
-                <Coffee className="h-4 w-4 mr-2" />
-                Breakfast
-              </TabsTrigger>
-              <TabsTrigger
-                value="lunch"
-                className="data-[state=active]:bg-green-600 data-[state=active]:text-white flex flex-row items-center"
-              >
-                <Utensils className="h-4 w-4 mr-2" />
-                Lunch
-              </TabsTrigger>
-              <TabsTrigger
-                value="dinner"
-                className="data-[state=active]:bg-green-600 data-[state=active]:text-white flex flex-row items-center"
-              >
-                <UtensilsCrossed className="h-4 w-4 mr-2" />
-                Dinner
-              </TabsTrigger>
+            <TabsList className="w-full bg-green-50">
+              {availableMenuTimes &&
+                availableMenuTimes.map((item, index) => (
+                  <TabsTrigger
+                    value={item}
+                    className="data-[state=active]:bg-green-600 data-[state=active]:text-white flex flex-row items-center"
+                    key={index}
+                  >
+                    {item}
+                  </TabsTrigger>
+                ))}
             </TabsList>
           </Tabs>
 
@@ -69,9 +105,12 @@ const MealTimeSelector: React.FC<MealTimeSelectorProps> = ({
               <SelectContent>
                 <SelectGroup>
                   <SelectLabel>Available Meals</SelectLabel>
-                  <SelectItem value="breakfast">Breakfast</SelectItem>
-                  <SelectItem value="lunch">Lunch</SelectItem>
-                  <SelectItem value="dinner">Dinner</SelectItem>
+                  {availableMenuTimes &&
+                    availableMenuTimes.map((item, index) => (
+                      <SelectItem value={item} key={index}>
+                        {item}
+                      </SelectItem>
+                    ))}
                 </SelectGroup>
               </SelectContent>
             </Select>
