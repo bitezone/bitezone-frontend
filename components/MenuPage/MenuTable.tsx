@@ -38,18 +38,6 @@ const MenuTable: React.FC<MenuTableProps> = ({
   useEffect(() => {
     setMenuTable(null);
     setLoading(true);
-    console.log(
-      `${
-        process.env.BACKEND_URL
-      }/api/menu?meal_time=${menuTime}&meal_location=${menuLocation}&date=${menuDate.toLocaleDateString(
-        "en-CA",
-        {
-          year: "numeric",
-          month: "2-digit",
-          day: "2-digit",
-        }
-      )}`
-    );
     axios
       .get(`${process.env.BACKEND_URL}/api/menu`, {
         params: {
@@ -104,6 +92,8 @@ const MenuTable: React.FC<MenuTableProps> = ({
         setLoading(false);
       });
   }, [menuDate, menuLocation, menuTime]);
+
+
 
   if (loading)
     return (
