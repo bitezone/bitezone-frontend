@@ -19,6 +19,7 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { Menu } from "lucide-react";
+import { getDayOfWeek } from "@/lib/htmlUtils";
 type MenuNavigationProps = {
   setMenuDate: React.Dispatch<React.SetStateAction<Date>>;
   setMenuTime: React.Dispatch<React.SetStateAction<string>>;
@@ -57,7 +58,7 @@ const MenuNavigation: React.FC<MenuNavigationProps> = ({
           </button>
           <div className="text-green-900 text-center">
             <p className="font-medium">{menuDate.toLocaleDateString()}</p>
-            <p className="text-xs text-green-600">(Tuesday)</p>
+            <p className="text-xs text-green-600">{getDayOfWeek(menuDate)}</p>
           </div>
           <button
             className="px-4 py-2 bg-green-100 hover:bg-green-200 text-green-800 text-sm rounded-md transition"

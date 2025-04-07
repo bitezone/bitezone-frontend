@@ -3,7 +3,7 @@
 import MealTimeSelector from "@/components/MenuPage/MealTimeSelector";
 import MenuNavigation from "@/components/MenuPage/MenuNavigation";
 import MenuTable from "@/components/MenuPage/MenuTable";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 
 const DiningHallMenu = () => {
   const [menuDate, setMenuDate] = useState<Date>(new Date());
