@@ -1,7 +1,7 @@
 "use client";
 import React, { useEffect, useState } from "react";
 import { Card, CardContent } from "@/components/ui/card";
-import { Clock, Coffee, Utensils, UtensilsCrossed } from "lucide-react";
+import { Clock } from "lucide-react";
 import { Tabs, TabsList, TabsTrigger } from "../ui/tabs";
 import {
   Select,

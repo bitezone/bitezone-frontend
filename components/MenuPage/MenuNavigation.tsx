@@ -31,10 +31,10 @@ type MenuNavigationProps = {
 
 const MenuNavigation: React.FC<MenuNavigationProps> = ({
   setMenuDate,
-  setMenuTime,
+  // setMenuTime,
   setMenuLocation,
   menuDate,
-  menuTime,
+  // menuTime,
   menuLocation,
 }) => {
   return (
