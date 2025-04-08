@@ -48,6 +48,7 @@ const MenuTable: React.FC<MenuTableProps> = ({
             month: "2-digit",
             day: "2-digit",
           }),
+          format:"json"
         },
       })
       .then((res) => {

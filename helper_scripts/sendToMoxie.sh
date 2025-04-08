@@ -1,0 +1,1 @@
+rsync -av --exclude='node_modules' --exclude='./compiledFiles' --exclude='.git' --exclude='.gitignore' --exclude='.DS_Store' --exclude='playground' ./ pphyo@cs.oswego.edu:/home/pphyo/CSC495/bitezone-frontend
