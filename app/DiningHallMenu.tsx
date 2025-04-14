@@ -3,6 +3,7 @@
 import MealTimeSelector from "@/components/MenuPage/MealTimeSelector";
 import MenuNavigation from "@/components/MenuPage/MenuNavigation";
 import MenuTable from "@/components/MenuPage/MenuTable";
+import Link from "next/link";
 import { useState } from "react";
 
 const DiningHallMenu = () => {
@@ -12,6 +13,9 @@ const DiningHallMenu = () => {
 
   return (
     <div className="min-h-screen bg-green-50 p-6 flex flex-col items-center gap-5">
+      <div>
+        <Link href="/user/login">Log In</Link>
+      </div>
       <MenuNavigation
         setMenuDate={setMenuDate}
         setMenuTime={setMenuTime}
