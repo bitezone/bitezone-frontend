@@ -20,6 +20,7 @@ import {
 } from "@/components/ui/select";
 import { Menu } from "lucide-react";
 import { getDayOfWeek } from "@/lib/htmlUtils";
+import Image from "next/image";
 type MenuNavigationProps = {
   setMenuDate: React.Dispatch<React.SetStateAction<Date>>;
   setMenuTime: React.Dispatch<React.SetStateAction<string>>;
@@ -39,9 +40,19 @@ const MenuNavigation: React.FC<MenuNavigationProps> = ({
 }) => {
   return (
     <div className="w-full max-w-3xl bg-white rounded-xl shadow-sm p-6 border border-green-100 flex flex-col md:flex-row justify-between items-center gap-4">
-      <h1 className="text-2xl font-bold text-green-800 text-center tracking-tight">
-        {menuLocation} Dining Hall
-      </h1>
+      <div>
+        <Image
+          src="/logo.svg"
+          alt="BiteZone Logo"
+          width={190}
+          height={40}
+          priority
+        />
+        <h1 className="text-2xl font-bold text-green-800 text-center tracking-tight">
+          {menuLocation} Dining Hall
+        </h1>
+      </div>
+
       <div className="flex flex-row items-center gap-5">
         <div className="flex items-center gap-4">
           <button
