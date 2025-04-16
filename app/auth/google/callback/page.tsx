@@ -24,7 +24,6 @@ export default function GoogleCallbackPage() {
         return;
       }
       try {
-
         const backendUrl =
           process.env.NEXT_PUBLIC_BACKEND_URL || "http://localhost:8000";
 
@@ -36,9 +35,8 @@ export default function GoogleCallbackPage() {
             { withCredentials: true }
           )
           .then((res) => {
-
-            console.log(res.data)
-            const { access, refresh, user } = res.data;
+            console.log(res.data);
+            const { access, refresh } = res.data;
 
             if (access) {
               localStorage.setItem("accessToken", access);

@@ -43,7 +43,7 @@ export default function LoginPage() {
       });
 
       const googleAuthUrl = `https://accounts.google.com/o/oauth2/v2/auth?${params.toString()}`;
-
+      
       window.location.href = googleAuthUrl;
     } catch (err) {
       setError("Failed to sign in with Google. Please try again.");
