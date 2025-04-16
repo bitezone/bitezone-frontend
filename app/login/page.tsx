@@ -8,17 +8,20 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import { useAuth } from "@/context/auth-context";
+import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 
 export default function LoginPage() {
-    const context= useAuth()
+  const { isAuthenticated } = useAuth();
+  const router = useRouter();
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
-
   useEffect(() => {
-        console.log(context)
-  }, [])
+    if (isAuthenticated) {
+      router.push("/profile")
+    }
+  }, [isLoading, isAuthenticated, router]);
 
   const handleGoogleLogin = async () => {
     try {
@@ -43,7 +46,7 @@ export default function LoginPage() {
       });
 
       const googleAuthUrl = `https://accounts.google.com/o/oauth2/v2/auth?${params.toString()}`;
-      
+
       window.location.href = googleAuthUrl;
     } catch (err) {
       setError("Failed to sign in with Google. Please try again.");

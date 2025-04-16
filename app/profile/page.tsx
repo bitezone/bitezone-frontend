@@ -7,13 +7,13 @@ import { LogOut, User } from "lucide-react"
 import { useRouter } from "next/navigation"
 import { useEffect } from "react"
 
-export default function Dashboard() {
+export default function Profile() {
   const { user, isAuthenticated, isLoading, logout } = useAuth()
   const router = useRouter()
 
   useEffect(() => {
     if (!isLoading && !isAuthenticated) {
-      router.push("/user/login")
+      router.push("/login")
     }
   }, [isLoading, isAuthenticated, router])
 
@@ -36,7 +36,7 @@ export default function Dashboard() {
     <div className="min-h-screen bg-gradient-to-b from-green-50 to-white p-6">
       <div className="max-w-4xl mx-auto">
         <div className="flex justify-between items-center mb-8">
-          <h1 className="text-2xl font-bold text-green-800">Dashboard</h1>
+          <h1 className="text-2xl font-bold text-green-800">Profile</h1>
           <Button variant="outline" onClick={logout} className="flex items-center gap-2">
             <LogOut className="h-4 w-4" />
             Sign Out
@@ -61,7 +61,6 @@ export default function Dashboard() {
           </CardContent>
         </Card>
 
-        {/* Additional dashboard content would go here */}
       </div>
     </div>
   )

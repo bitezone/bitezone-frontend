@@ -50,7 +50,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
         },
       });
 
-      console.log(response)
+      console.log(response);
       setUser(response.data);
     } catch (error) {
       console.error("Auth check failed:", error);
@@ -75,15 +75,19 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     try {
       const backendUrl =
         process.env.NEXT_PUBLIC_BACKEND_URL || "http://localhost:8000";
-
+      const refreshToken = localStorage.getItem("refreshToken");
       await axios.post(
         `${backendUrl}/users/logout/`,
-        {},
+        { refresh: refreshToken },
         {
-          withCredentials: true,
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem("accessToken")}`,
+          },
         }
       );
 
+      localStorage.removeItem("accessToken");
+      localStorage.removeItem("refreshToken");
       setUser(null);
       window.location.href = "/";
     } catch (error) {

@@ -2,7 +2,7 @@
 
 import { useAuth } from "@/context/auth-context";
 
-export default function Dashboard() {
+export default function Test() {
   const context = useAuth();
 
   console.log(context)
