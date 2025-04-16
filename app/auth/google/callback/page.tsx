@@ -15,19 +15,18 @@ export default function GoogleCallbackPage() {
     const exchangeCode = async () => {
       if (error) {
         console.error("OAuth error:", error);
-        router.push(`/user/login?error=${encodeURIComponent(error)}`);
+        router.push(`/login?error=${encodeURIComponent(error)}`);
         return;
       }
 
       if (!code) {
-        router.push("/user/login?error=missing_code");
+        router.push("/login?error=missing_code");
         return;
       }
       try {
         const backendUrl =
           process.env.NEXT_PUBLIC_BACKEND_URL || "http://localhost:8000";
 
-        // Exchange the Google code with your Django backend for tokens
         axios
           .post(
             `${backendUrl}/users/authenticate/google/`,
@@ -44,12 +43,13 @@ export default function GoogleCallbackPage() {
             if (refresh) {
               localStorage.setItem("refreshToken", refresh);
             }
-
-            router.push("/dashboard");
+          })
+          .then(() => {
+            router.push("/profile");
           });
       } catch (err) {
         console.error("Token exchange failed:", err);
-        router.push("/user/login?error=auth_failed");
+        router.push("/login?error=auth_failed");
       }
     };
 
