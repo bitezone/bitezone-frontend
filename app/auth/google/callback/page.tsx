@@ -3,10 +3,12 @@
 import { useEffect } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 import axios from "axios";
+import { useAuth } from "@/context/auth-context";
 
 export default function GoogleCallbackPage() {
   const searchParams = useSearchParams();
   const router = useRouter();
+  const {checkAuthStatus} = useAuth();
 
   useEffect(() => {
     const code = searchParams.get("code");
@@ -33,7 +35,7 @@ export default function GoogleCallbackPage() {
             { code },
             { withCredentials: true }
           )
-          .then((res) => {
+          .then(async (res) => {
             console.log(res.data);
             const { access, refresh } = res.data;
 
@@ -43,8 +45,8 @@ export default function GoogleCallbackPage() {
             if (refresh) {
               localStorage.setItem("refreshToken", refresh);
             }
-          })
-          .then(() => {
+
+            await checkAuthStatus();
             router.push("/profile");
           });
       } catch (err) {

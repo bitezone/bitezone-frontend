@@ -18,10 +18,11 @@ export default function LoginPage() {
   const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
-    if (isAuthenticated) {
-      router.push("/profile")
+    console.log(isLoading, isAuthenticated)
+    if (!isLoading && isAuthenticated) {
+      router.push("/profile");
     }
-  }, [isLoading, isAuthenticated, router]);
+  }, [isAuthenticated, isLoading, router]);
 
   const handleGoogleLogin = async () => {
     try {

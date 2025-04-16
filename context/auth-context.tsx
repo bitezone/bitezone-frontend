@@ -1,6 +1,8 @@
 "use client";
 
 import axios from "axios";
+
+import api from "@/lib/authentication/handleToken";
 import {
   createContext,
   useContext,
@@ -21,6 +23,7 @@ interface AuthContextType {
   isLoading: boolean;
   signInWithGoogle: () => Promise<void>;
   logout: () => Promise<void>;
+  checkAuthStatus: () => Promise<void>;
 }
 
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
@@ -35,22 +38,15 @@ export function AuthProvider({ children }: { children: ReactNode }) {
 
   const checkAuthStatus = async () => {
     try {
-      const backendUrl =
-        process.env.NEXT_PUBLIC_BACKEND_URL || "http://localhost:8000";
       const accessToken = localStorage.getItem("accessToken");
-
+      console.log(accessToken)
       if (!accessToken) {
         setUser(null);
         setIsLoading(false);
         return;
       }
-      const response = await axios.get(`${backendUrl}/users/user/`, {
-        headers: {
-          Authorization: `Bearer ${accessToken}`,
-        },
-      });
-
-      console.log(response);
+      
+      const response = await api.get("/users/user/");
       setUser(response.data);
     } catch (error) {
       console.error("Auth check failed:", error);
@@ -103,6 +99,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
         isLoading,
         signInWithGoogle,
         logout,
+        checkAuthStatus
       }}
     >
       {children}

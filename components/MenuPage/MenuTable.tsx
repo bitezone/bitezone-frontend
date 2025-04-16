@@ -39,7 +39,7 @@ const MenuTable: React.FC<MenuTableProps> = ({
     setMenuTable(null);
     setLoading(true);
     axios
-      .get(`${process.env.BACKEND_URL}/api/menu`, {
+      .get(`${process.env.NEXT_PUBLIC_BACKEND_URL}/api/menu`, {
         params: {
           meal_time: menuTime,
           meal_location: menuLocation,
