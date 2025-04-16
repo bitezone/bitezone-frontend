@@ -44,13 +44,13 @@ export function AuthProvider({ children }: { children: ReactNode }) {
         setIsLoading(false);
         return;
       }
-
       const response = await axios.get(`${backendUrl}/users/user/`, {
         headers: {
           Authorization: `Bearer ${accessToken}`,
         },
       });
 
+      console.log(response)
       setUser(response.data);
     } catch (error) {
       console.error("Auth check failed:", error);
