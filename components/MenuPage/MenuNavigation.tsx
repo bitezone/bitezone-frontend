@@ -1,15 +1,6 @@
 import React from "react";
 
 import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuLabel,
-  DropdownMenuRadioGroup,
-  DropdownMenuRadioItem,
-  DropdownMenuSeparator,
-  DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu";
-import {
   Select,
   SelectContent,
   SelectGroup,
@@ -18,7 +9,6 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import { Menu } from "lucide-react";
 import { getDayOfWeek } from "@/lib/htmlUtils";
 type MenuNavigationProps = {
   setMenuDate: React.Dispatch<React.SetStateAction<Date>>;
