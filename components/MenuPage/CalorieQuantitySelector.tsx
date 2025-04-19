@@ -1,16 +1,14 @@
-import React from "react";
+"use client";
+import { useCalorieTracking } from "@/context/calorie-tracking-context";
+import React, { useEffect, useState } from "react";
 
 interface QuantitySelectorProps {
-  quantity: number;
-  onIncrease: () => void;
-  onDecrease: () => void;
+  id: number;
 }
 
-const QuantitySelector: React.FC<QuantitySelectorProps> = ({
-  quantity,
-  onIncrease,
-  onDecrease,
-}) => {
+const QuantitySelector: React.FC<QuantitySelectorProps> = ({ id }) => {
+  const { updateItemAmount, getItem } = useCalorieTracking();
+
   return (
     <div
       className="flex items-center gap-4
@@ -22,14 +20,18 @@ const QuantitySelector: React.FC<QuantitySelectorProps> = ({
       </span>
       <div className="flex items-center border border-green-300 rounded overflow-hidden">
         <button
-          onClick={onDecrease}
+          onClick={() => {
+            updateItemAmount(id, -1);
+          }}
           className="px-2 py-1 text-green-800 bg-green-100 hover:bg-green-200"
         >
           −
         </button>
-        <span className="px-3">{quantity}</span>
+        <span className="px-3">{getItem(id)?.amount ?? 0}</span>
         <button
-          onClick={onIncrease}
+          onClick={() => {
+            updateItemAmount(id, 1);
+          }}
           className="px-2 py-1 text-green-800 bg-green-100 hover:bg-green-200"
         >
           +
