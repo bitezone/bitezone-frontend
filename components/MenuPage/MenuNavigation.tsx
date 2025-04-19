@@ -30,7 +30,8 @@ const MenuNavigation: React.FC<MenuNavigationProps> = ({
   return (
     <div className="w-full max-w-3xl bg-white rounded-xl shadow-sm p-6 border border-green-100 flex flex-col md:flex-row justify-between items-center gap-4">
       <h1 className="text-2xl font-bold text-green-800 text-center tracking-tight">
-        {menuLocation} Dining Hall
+        {menuLocation.charAt(0).toUpperCase() + menuLocation.slice(1)} Dining
+        Hall
       </h1>
       <div className="flex flex-col md:flex-row items-center gap-5">
         <div className="flex items-center gap-4">

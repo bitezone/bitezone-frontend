@@ -1,9 +1,12 @@
+import { SelectedItemsProvider } from "@/context/calorie-tracking-context";
 import DiningHallMenu from "./DiningHallMenu";
 
 export default function Home() {
   return (
     <div>
-      <DiningHallMenu />
+      <SelectedItemsProvider>
+        <DiningHallMenu />
+      </SelectedItemsProvider>
     </div>
   );
 }
