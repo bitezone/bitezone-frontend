@@ -112,7 +112,7 @@ const MenuTable: React.FC<MenuTableProps> = ({
   if (!menuTable) {
     return (
       <div>
-        <p>Data could not be fetched</p>
+        <p>Data could not be fetched. Please refresh the page.</p>
       </div>
     );
   }
@@ -142,7 +142,7 @@ const MenuTables: React.FC<{ item: DisplayTableOrdered }> = ({ item }) => {
   const [itemDetails, setItemDetails] = useState<MenuItemNutritionType | null>(
     null
   );
-  const [quantities, setQuantities] = useState<Record<number, number>>({});
+
 
   const fetchItemDetails = async (itemId: number) => {
     try {
@@ -183,24 +183,7 @@ const MenuTables: React.FC<{ item: DisplayTableOrdered }> = ({ item }) => {
               >
                 <TableCell className="text-green-900 text-sm whitespace-normal flex flex-row items-center justify-between">
                   <p>{decodeHtmlEntities(menu_item.name)}</p>
-                  <QuantitySelector
-                    quantity={quantities[menu_item.item_id] || 0}
-                    onIncrease={() =>
-                      setQuantities((prev) => ({
-                        ...prev,
-                        [menu_item.item_id]: (prev[menu_item.item_id] || 0) + 1,
-                      }))
-                    }
-                    onDecrease={() =>
-                      setQuantities((prev) => ({
-                        ...prev,
-                        [menu_item.item_id]: Math.max(
-                          (prev[menu_item.item_id] || 0) - 1,
-                          0
-                        ),
-                      }))
-                    }
-                  />
+                  <QuantitySelector id={menu_item.item_id} />
                 </TableCell>
               </TableRow>
 
