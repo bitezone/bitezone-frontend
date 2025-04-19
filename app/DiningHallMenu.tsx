@@ -11,7 +11,7 @@ const DiningHallMenu = () => {
   const [menuLocation, setMenuLocation] = useState<string>("lakeside");
 
   return (
-    <div className="min-h-screen bg-green-50 p-6 flex flex-col items-center gap-5">
+    <div className="min-h-screen p-6 flex flex-col items-center gap-5">
       <MenuNavigation
         setMenuDate={setMenuDate}
         setMenuTime={setMenuTime}
