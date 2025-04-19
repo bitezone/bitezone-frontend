@@ -1,7 +1,4 @@
 "use client";
-
-import axios from "axios";
-
 import api from "@/lib/authentication/handleToken";
 import {
   createContext,

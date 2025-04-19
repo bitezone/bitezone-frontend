@@ -6,6 +6,7 @@ import axios from "axios";
 import { motion } from "framer-motion";
 import { decodeHtmlEntities } from "@/lib/htmlUtils";
 import { MenuItemNutritionType } from "@/types/menu";
+import QuantitySelector from "./CalorieQuantitySelector";
 
 interface MenuItemProp {
   item_id: number;
@@ -141,6 +142,7 @@ const MenuTables: React.FC<{ item: DisplayTableOrdered }> = ({ item }) => {
   const [itemDetails, setItemDetails] = useState<MenuItemNutritionType | null>(
     null
   );
+  const [quantities, setQuantities] = useState<Record<number, number>>({});
 
   const fetchItemDetails = async (itemId: number) => {
     try {
@@ -179,8 +181,26 @@ const MenuTables: React.FC<{ item: DisplayTableOrdered }> = ({ item }) => {
                 className="hover:bg-green-50 transition duration-200 cursor-pointer"
                 onClick={() => handleItemClick(menu_item.item_id)}
               >
-                <TableCell className="text-green-900 text-sm whitespace-normal">
-                  {decodeHtmlEntities(menu_item.name)}
+                <TableCell className="text-green-900 text-sm whitespace-normal flex flex-row items-center justify-between">
+                  <p>{decodeHtmlEntities(menu_item.name)}</p>
+                  <QuantitySelector
+                    quantity={quantities[menu_item.item_id] || 0}
+                    onIncrease={() =>
+                      setQuantities((prev) => ({
+                        ...prev,
+                        [menu_item.item_id]: (prev[menu_item.item_id] || 0) + 1,
+                      }))
+                    }
+                    onDecrease={() =>
+                      setQuantities((prev) => ({
+                        ...prev,
+                        [menu_item.item_id]: Math.max(
+                          (prev[menu_item.item_id] || 0) - 1,
+                          0
+                        ),
+                      }))
+                    }
+                  />
                 </TableCell>
               </TableRow>
 
@@ -206,7 +226,7 @@ const MenuTables: React.FC<{ item: DisplayTableOrdered }> = ({ item }) => {
                           </div>
                           {itemDetails.ingredients &&
                           itemDetails.ingredients.length > 0 ? (
-                            <ul className="list-disc pl-5 text-green-700 text-xs">
+                            <ul className="list-disc pl-5 text-green-700 text-xs text-wrap">
                               {itemDetails.ingredients.map(
                                 (ingredient: string, i: number) => (
                                   <li key={i}>{ingredient}</li>
@@ -239,9 +259,7 @@ const MenuTables: React.FC<{ item: DisplayTableOrdered }> = ({ item }) => {
                               )}
                             </div>
                           ) : (
-                            <div className="text-xs ">
-                              No allergies listed
-                            </div>
+                            <div className="text-xs ">No allergies listed</div>
                           )}
                         </div>
                       </div>
