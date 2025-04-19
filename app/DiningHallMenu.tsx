@@ -15,11 +15,12 @@ const DiningHallMenu = () => {
 
   useEffect(() => {
     clearItems();
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [menuDate, menuTime, menuLocation]);
 
   return (
     <div className="min-h-screen p-6 flex flex-col items-center gap-5">
+      <CalorieIndicator />
       <MenuNavigation
         setMenuDate={setMenuDate}
         setMenuTime={setMenuTime}
@@ -28,7 +29,6 @@ const DiningHallMenu = () => {
         menuTime={menuTime}
         menuLocation={menuLocation}
       />
-      <CalorieIndicator />
       <MealTimeSelector
         setMenuTime={setMenuTime}
         menuTime={menuTime}
