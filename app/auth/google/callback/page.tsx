@@ -8,7 +8,7 @@ import { useAuth } from "@/context/auth-context";
 export default function GoogleCallbackPage() {
   const searchParams = useSearchParams();
   const router = useRouter();
-  const {checkAuthStatus} = useAuth();
+  const { checkAuthStatus } = useAuth();
 
   useEffect(() => {
     const code = searchParams.get("code");
@@ -20,15 +20,15 @@ export default function GoogleCallbackPage() {
         router.push(`/login?error=${encodeURIComponent(error)}`);
         return;
       }
-
       if (!code) {
         router.push("/login?error=missing_code");
+      
+
         return;
       }
       try {
         const backendUrl =
           process.env.NEXT_PUBLIC_BACKEND_URL || "http://localhost:8000";
-
         axios
           .post(
             `${backendUrl}/users/authenticate/google/`,
@@ -47,8 +47,12 @@ export default function GoogleCallbackPage() {
 
             await checkAuthStatus();
             router.push("/profile");
+          })
+          .catch(() => {
+            router.push("/login")
           });
       } catch (err) {
+        console.log("hi");
         console.error("Token exchange failed:", err);
         router.push("/login?error=auth_failed");
       }
