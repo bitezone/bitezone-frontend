@@ -42,7 +42,7 @@ const MenuNavigation: React.FC<MenuNavigationProps> = ({
       <h1 className="text-2xl font-bold text-green-800 text-center tracking-tight">
         {menuLocation} Dining Hall
       </h1>
-      <div className="flex flex-row items-center gap-5">
+      <div className="flex flex-col md:flex-row items-center gap-5">
         <div className="flex items-center gap-4">
           <button
             className="px-4 py-2 bg-green-100 hover:bg-green-200 text-green-800 text-sm rounded-md transition"
@@ -73,7 +73,7 @@ const MenuNavigation: React.FC<MenuNavigationProps> = ({
             Next
           </button>
         </div>
-        <div className="hidden md:block">
+        <div className="">
           <Select value={menuLocation} onValueChange={setMenuLocation}>
             <SelectTrigger className="w-[180px]">
               <SelectValue />
@@ -88,32 +88,6 @@ const MenuNavigation: React.FC<MenuNavigationProps> = ({
             </SelectContent>
           </Select>
         </div>
-      </div>
-      {/* Dropdown for Selection - for mobile device */}
-      <div className="fixed bottom-5 right-5 md:hidden z-50">
-        <DropdownMenu>
-          <DropdownMenuTrigger className="rounded-full bg-green-500 hover:bg-green-600 border-2 border-green-700 p-2 flex items-center justify-center shadow-md transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50">
-            <Menu className="text-white h-5 w-5" />
-          </DropdownMenuTrigger>
-          <DropdownMenuContent className="bg-white p-5 -translate-x-10 rounded-xl shadow-2xl">
-            <DropdownMenuLabel>Choose Dining Hall</DropdownMenuLabel>
-            <DropdownMenuSeparator />
-            <DropdownMenuRadioGroup
-              value={menuLocation}
-              onValueChange={setMenuLocation}
-            >
-              <DropdownMenuRadioItem value="cooper">
-                Cooper
-              </DropdownMenuRadioItem>
-              <DropdownMenuRadioItem value="lakeside">
-                Lakeside
-              </DropdownMenuRadioItem>
-              <DropdownMenuRadioItem value="pathfinder">
-                Pathfinder
-              </DropdownMenuRadioItem>
-            </DropdownMenuRadioGroup>
-          </DropdownMenuContent>
-        </DropdownMenu>
       </div>
     </div>
   );
