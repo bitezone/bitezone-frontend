@@ -36,7 +36,6 @@ export default function GoogleCallbackPage() {
             { withCredentials: true }
           )
           .then(async (res) => {
-            console.log(res.data);
             const { access, refresh } = res.data;
 
             if (access) {

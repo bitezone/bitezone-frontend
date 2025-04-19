@@ -39,13 +39,13 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   const checkAuthStatus = async () => {
     try {
       const accessToken = localStorage.getItem("accessToken");
-      console.log(accessToken)
+      console.log(accessToken);
       if (!accessToken) {
         setUser(null);
         setIsLoading(false);
         return;
       }
-      
+
       const response = await api.get("/users/user/");
       setUser(response.data);
     } catch (error) {
@@ -69,18 +69,10 @@ export function AuthProvider({ children }: { children: ReactNode }) {
 
   const logout = async () => {
     try {
-      const backendUrl =
-        process.env.NEXT_PUBLIC_BACKEND_URL || "http://localhost:8000";
       const refreshToken = localStorage.getItem("refreshToken");
-      await axios.post(
-        `${backendUrl}/users/logout/`,
-        { refresh: refreshToken },
-        {
-          headers: {
-            Authorization: `Bearer ${localStorage.getItem("accessToken")}`,
-          },
-        }
-      );
+      await api.post("/users/logout/", {
+        refresh: refreshToken,
+      });
 
       localStorage.removeItem("accessToken");
       localStorage.removeItem("refreshToken");
@@ -99,7 +91,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
         isLoading,
         signInWithGoogle,
         logout,
-        checkAuthStatus
+        checkAuthStatus,
       }}
     >
       {children}
