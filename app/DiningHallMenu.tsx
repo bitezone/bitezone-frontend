@@ -4,6 +4,7 @@ import CalorieIndicator from "@/components/MenuPage/CalorieIndicator";
 import MealTimeSelector from "@/components/MenuPage/MealTimeSelector";
 import MenuNavigation from "@/components/MenuPage/MenuNavigation";
 import MenuTable from "@/components/MenuPage/MenuTable";
+import SignInAs from "@/components/MenuPage/SignInAs";
 import { useCalorieTracking } from "@/context/calorie-tracking-context";
 import { useEffect, useState } from "react";
 
@@ -20,6 +21,7 @@ const DiningHallMenu = () => {
 
   return (
     <div className="min-h-screen p-6 flex flex-col items-center gap-5">
+      <SignInAs />
       <CalorieIndicator
         menuDate={menuDate}
         menuTime={menuTime}
