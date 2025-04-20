@@ -2,6 +2,7 @@
 "use client";
 import CalorieIndicator from "@/components/MenuPage/CalorieIndicator";
 import MealTimeSelector from "@/components/MenuPage/MealTimeSelector";
+import MenuFilter from "@/components/MenuPage/MenuFilter";
 import MenuNavigation from "@/components/MenuPage/MenuNavigation";
 import MenuTable from "@/components/MenuPage/MenuTable";
 import SignInAs from "@/components/MenuPage/SignInAs";
@@ -12,6 +13,7 @@ const DiningHallMenu = () => {
   const [menuDate, setMenuDate] = useState<Date>(new Date());
   const [menuTime, setMenuTime] = useState<string>("");
   const [menuLocation, setMenuLocation] = useState<string>("lakeside");
+  const [allergies, setAllergies] = useState<string[]>([]);
   const { clearItems } = useCalorieTracking();
 
   useEffect(() => {
@@ -41,10 +43,12 @@ const DiningHallMenu = () => {
         menuDate={menuDate}
         menuLocation={menuLocation}
       />
+      <MenuFilter setAllergies={setAllergies}/>
       <MenuTable
         menuDate={menuDate}
         menuTime={menuTime}
         menuLocation={menuLocation}
+        allergies={allergies}
       />
     </div>
   );

@@ -17,6 +17,7 @@ type MenuTableProps = {
   menuDate: Date;
   menuTime: string;
   menuLocation: string;
+  allergies: string[];
 };
 interface GroupedItems {
   [category: string]: MenuItemProp[];
@@ -31,6 +32,7 @@ const MenuTable: React.FC<MenuTableProps> = ({
   menuDate,
   menuTime,
   menuLocation,
+  allergies,
 }) => {
   const [menuTable, setMenuTable] = useState<null | DisplayTableOrdered[]>(
     null
@@ -40,6 +42,7 @@ const MenuTable: React.FC<MenuTableProps> = ({
   useEffect(() => {
     setMenuTable(null);
     setLoading(true);
+    console.log(allergies.join(","));
     axios
       .get(`${process.env.NEXT_PUBLIC_BACKEND_URL}/api/menu`, {
         params: {
@@ -50,6 +53,8 @@ const MenuTable: React.FC<MenuTableProps> = ({
             month: "2-digit",
             day: "2-digit",
           }),
+          exclude_allergy:
+            allergies.length > 0 ? allergies.join(",") : undefined,
           format: "json",
         },
       })
@@ -100,7 +105,7 @@ const MenuTable: React.FC<MenuTableProps> = ({
 
         setLoading(false);
       });
-  }, [menuDate, menuLocation, menuTime]);
+  }, [menuDate, menuLocation, menuTime, allergies]);
 
   if (loading)
     return (
@@ -142,7 +147,6 @@ const MenuTables: React.FC<{ item: DisplayTableOrdered }> = ({ item }) => {
   const [itemDetails, setItemDetails] = useState<MenuItemNutritionType | null>(
     null
   );
-
 
   const fetchItemDetails = async (itemId: number) => {
     try {
