@@ -120,23 +120,17 @@ export default function Profile() {
           </Button>
         </div>
 
-        <Card className="mb-6 border-green-100">
-          <CardHeader>
-            <CardTitle className="text-xl text-green-700">
-              Welcome Back
-            </CardTitle>
-            <CardDescription>
-              You are now signed in to your account
-            </CardDescription>
-          </CardHeader>
-          <CardContent>
-            <div className="flex items-center gap-4 p-4 bg-green-50 rounded-lg">
-              <div className="bg-green-100 p-3 rounded-full">
-                <User className="h-6 w-6 text-green-600" />
+        <Card className="border-green-100 mb-4">
+          <CardContent className="">
+            <div className="flex items-center gap-3">
+              <div className="bg-green-100 p-2 rounded-full">
+                <User className="h-4 w-4 text-green-600" />
               </div>
               <div>
-                <p className="font-medium">{user?.name}</p>
-                <p className="text-sm text-muted-foreground">{user?.email}</p>
+                <p className="text-sm font-medium text-green-700">
+                  Welcome Back
+                </p>
+                <p className="text-xs text-muted-foreground">{user?.email}</p>
               </div>
             </div>
           </CardContent>

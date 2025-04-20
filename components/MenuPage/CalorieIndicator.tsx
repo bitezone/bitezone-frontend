@@ -34,12 +34,11 @@ const CalorieIndicator = ({
   return (
     <div
       className={`fixed right-0 top-1/8 z-50 transition-all duration-300 ${
-        isExpanded ? "w-80" : "w-20"
+        isExpanded ? "w-80" : "w-15"
       }`}
     >
-      <div className="h-full bg-white border-r border-t border-b border-green-100 rounded-r-xl shadow-md flex flex-col">
-        {/* Header with toggle button */}
-        <div className="p-3 border-b border-green-100 flex justify-between items-center bg-green-50 rounded-tr-xl">
+      <div className="h-full bg-white border-r border-t border-b border-green-100 rounded-l-xl shadow-md flex flex-col">
+        <div className=" border-b p-3 border-green-100 flex justify-between items-center bg-green-50 rounded-tl-xl">
           {isExpanded ? (
             <>
               <h3 className="font-bold text-green-800">Calorie Tracker</h3>
@@ -74,7 +73,7 @@ const CalorieIndicator = ({
               </div>
             </div>
           ) : (
-            <div className=" whitespace-nowrap text-sm font-medium text-green-800">
+            <div className=" whitespace-nowrap text-xs font-medium text-green-800">
               {totalCalories || 0} Cal
             </div>
           )}
