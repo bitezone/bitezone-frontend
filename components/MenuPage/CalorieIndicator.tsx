@@ -1,9 +1,11 @@
 "use client";
 import { useCalorieTracking } from "@/context/calorie-tracking-context";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { ChevronRight, ChevronLeft, Trash } from "lucide-react";
 import { Button } from "../ui/button";
-import axios from "axios";
+
+import { Check, Loader2 } from "lucide-react";
+import { motion, AnimatePresence } from "framer-motion";
 import api from "@/lib/authentication/handleToken";
 
 type MenuItemCartContext = {
@@ -129,21 +131,22 @@ const CalorieIndicator = ({
 };
 
 export default CalorieIndicator;
-
 const CheckoutOperation = ({
   menuDate,
   menuTime,
   menuLocation,
 }: CalorieIndicatorProps) => {
-  const { selectedItems } = useCalorieTracking();
+  const { selectedItems, clearItems } = useCalorieTracking();
+  const [checkoutState, setCheckoutState] = useState<
+    "idle" | "loading" | "success"
+  >("idle");
+
   const handleCalorieCheckout = async () => {
-    console.log(
-      menuDate.toLocaleDateString("en-CA", {
-        year: "numeric",
-        month: "2-digit",
-        day: "2-digit",
-      })
-    );
+    // Prevent multiple clicks by checking if already in progress
+    if (checkoutState !== "idle") return;
+
+    setCheckoutState("loading");
+
     const payload = {
       date: menuDate.toLocaleDateString("en-CA", {
         year: "numeric",
@@ -161,23 +164,77 @@ const CheckoutOperation = ({
     try {
       const response = await api.post("/users/meal-logs/", payload);
       console.log("✅ Meal logged:", response.data);
+      setCheckoutState("success");
+
+      // Reset to idle after showing success for 2 seconds
+      setTimeout(() => {
+        setCheckoutState("idle");
+        clearItems();
+      }, 2000);
     } catch (error) {
       console.error("❌ Failed to log meal:", error);
+      setCheckoutState("idle");
     }
   };
 
-  useEffect(() => {
-    console.log(menuDate);
-  }, [menuDate]);
-
   return (
-    <Button
+    <motion.div
       className="w-full"
-      onClick={() => {
-        handleCalorieCheckout();
-      }}
+      initial={{ opacity: 1 }}
+      whileHover={{ scale: checkoutState === "idle" ? 1.02 : 1 }}
+      whileTap={{ scale: checkoutState === "idle" ? 0.98 : 1 }}
     >
-      Checkout
-    </Button>
+      <Button
+        className="w-full relative overflow-hidden"
+        onClick={handleCalorieCheckout}
+        disabled={checkoutState !== "idle"}
+        variant="default"
+      >
+        <AnimatePresence mode="wait">
+          {checkoutState === "idle" && (
+            <motion.span
+              key="checkout-text"
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -10 }}
+              transition={{ duration: 0.2 }}
+            >
+              Checkout
+            </motion.span>
+          )}
+
+          {checkoutState === "loading" && (
+            <motion.span
+              key="loading"
+              className="flex items-center justify-center"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+            >
+              <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+              Processing...
+            </motion.span>
+          )}
+
+          {checkoutState === "success" && (
+            <motion.span
+              key="success"
+              className="flex items-center justify-center"
+              initial={{ opacity: 0, scale: 0.8 }}
+              animate={{ opacity: 1, scale: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{
+                type: "spring",
+                stiffness: 500,
+                damping: 15,
+              }}
+            >
+              <Check className="mr-2 h-4 w-4" />
+              Meal Logged!
+            </motion.span>
+          )}
+        </AnimatePresence>
+      </Button>
+    </motion.div>
   );
 };

@@ -190,7 +190,7 @@ export default function UserCalorieTable({
                                 )
                               }
                             >
-                              <div className="flex items-center gap-2">
+                              <div className="flex flex-col sm:flex-row items-center gap-2">
                                 <Badge
                                   variant="outline"
                                   className="bg-green-50"
