@@ -20,7 +20,11 @@ const DiningHallMenu = () => {
 
   return (
     <div className="min-h-screen p-6 flex flex-col items-center gap-5">
-      <CalorieIndicator />
+      <CalorieIndicator
+        menuDate={menuDate}
+        menuTime={menuTime}
+        menuLocation={menuLocation}
+      />
       <MenuNavigation
         setMenuDate={setMenuDate}
         setMenuTime={setMenuTime}
