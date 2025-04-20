@@ -33,7 +33,7 @@ export default function RootLayout({
                 <SideBarNavigation />
               </div>
               <main className="w-full bg-green-50">
-                <SidebarTrigger className="hidden md:block p-5 hover:bg-transparent hover:text-inherit cursor-pointer" />
+                {/* <SidebarTrigger className="hidden md:block p-5 hover:bg-transparent hover:text-inherit cursor-pointer" /> */}
                 {children}
               </main>
             </SidebarProvider>
