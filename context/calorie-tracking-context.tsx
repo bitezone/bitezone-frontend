@@ -42,7 +42,7 @@ export const SelectedItemsProvider: React.FC<{ children: ReactNode }> = ({
     } else if (amountChange > 0) {
       try {
         const res = await axios.get(
-          `${process.env.NEXT_PUBLIC_BACKEND_URL}/api/menu-item/${item_id}`
+          `${process.env.NEXT_PUBLIC_BACKEND_URL}/api/menu-item/${item_id}/`
         );
         const data = res.data;
         const newItem: MenuItemCartContext = {

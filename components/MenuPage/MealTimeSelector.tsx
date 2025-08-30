@@ -38,7 +38,7 @@ const MealTimeSelector: React.FC<MealTimeSelectorProps> = ({
   );
   useEffect(() => {
     axios
-      .get(`${process.env.NEXT_PUBLIC_BACKEND_URL}/api/menu/get_menu_times`, {
+      .get(`${process.env.NEXT_PUBLIC_BACKEND_URL}/api/menu/get_menu_times/`, {
         params: {
           meal_location: menuLocation,
           date: menuDate.toLocaleDateString("en-CA", {

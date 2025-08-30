@@ -3,7 +3,7 @@
 import type React from "react";
 
 import { useState, useEffect } from "react";
-import { Check, Filter, Loader2, X } from "lucide-react";
+import { Check, Filter, Loader2 } from "lucide-react";
 import {
   Popover,
   PopoverContent,
@@ -46,10 +46,8 @@ const MenuFilter: React.FC<MenuFilterProps> = ({ setAllergies }) => {
       setError(null);
 
       try {
-        // Use environment variable for API URL (fallback to localhost for development)
-        const apiUrl =
-          process.env.NEXT_PUBLIC_API_URL || "http://localhost:8000";
-        const response = await axios.get(`${apiUrl}/api/allergies`);
+        const apiUrl = process.env.NEXT_PUBLIC_BACKEND_URL;
+        const response = await axios.get(`${apiUrl}/api/allergies/`);
         setAllergyOptions(response.data);
       } catch (err) {
         console.error("Failed to fetch allergies", err);

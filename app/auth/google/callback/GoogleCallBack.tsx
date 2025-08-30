@@ -1,12 +1,11 @@
 "use client";
 
-<<<<<<< HEAD
 import { useEffect } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 import axios from "axios";
 import { useAuth } from "@/context/auth-context";
 
-export default function GoogleCallbackPage() {
+export default function GoogleCallbackInner() {
   const searchParams = useSearchParams();
   const router = useRouter();
   const { checkAuthStatus } = useAuth();
@@ -23,19 +22,13 @@ export default function GoogleCallbackPage() {
       }
       if (!code) {
         router.push("/login?error=missing_code");
-      
-
         return;
       }
       try {
-        const backendUrl =
-          process.env.NEXT_PUBLIC_BACKEND_URL || "http://localhost:8000";
+        const backendUrl = process.env.NEXT_PUBLIC_BACKEND_URL;
+
         axios
-          .post(
-            `${backendUrl}/users/authenticate/google/`,
-            { code },
-            { withCredentials: true }
-          )
+          .post(`${backendUrl}/users/authenticate/google/`, { code })
           .then(async (res) => {
             const { access, refresh } = res.data;
 
@@ -50,28 +43,17 @@ export default function GoogleCallbackPage() {
             router.push("/profile");
           })
           .catch(() => {
-            router.push("/login")
+            router.push("/login");
           });
       } catch (err) {
-        console.log("hi");
         console.error("Token exchange failed:", err);
         router.push("/login?error=auth_failed");
       }
     };
 
     exchangeCode();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [searchParams, router]);
 
   return <div className="p-4">Authenticating with Google...</div>;
-=======
-import { Suspense } from "react";
-import GoogleCallbackInner from "./GoogleCallBack";
-
-export default function GoogleCallbackPage() {
-  return (
-    <Suspense fallback={<div className="p-4">Authenticating with Google...</div>}>
-      <GoogleCallbackInner />
-    </Suspense>
-  );
->>>>>>> development
 }

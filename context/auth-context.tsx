@@ -36,7 +36,6 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   const checkAuthStatus = async () => {
     try {
       const accessToken = localStorage.getItem("accessToken");
-      console.log(accessToken);
       if (!accessToken) {
         setUser(null);
         setIsLoading(false);
@@ -54,8 +53,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   };
 
   const signInWithGoogle = async () => {
-    const backendUrl =
-      process.env.NEXT_PUBLIC_BACKEND_URL || "http://localhost:8000";
+    const backendUrl = process.env.NEXT_PUBLIC_BACKEND_URL;
     const redirectUri = `${window.location.origin}/auth/callback`;
 
     // Backend will use this callback URL
