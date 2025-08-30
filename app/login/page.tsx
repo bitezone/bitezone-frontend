@@ -18,7 +18,6 @@ export default function LoginPage() {
   const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
-    console.log(isLoading, isAuthenticated)
     if (!isLoading && isAuthenticated) {
       router.push("/profile");
     }

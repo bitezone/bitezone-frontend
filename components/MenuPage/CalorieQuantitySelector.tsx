@@ -1,6 +1,6 @@
 "use client";
 import { useCalorieTracking } from "@/context/calorie-tracking-context";
-import React, { useEffect, useState } from "react";
+import React from "react";
 
 interface QuantitySelectorProps {
   id: number;

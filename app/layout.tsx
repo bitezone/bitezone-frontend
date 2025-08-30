@@ -4,7 +4,7 @@ import "./globals.css";
 import { AuthProvider } from "@/context/auth-context";
 import BottomNavigation from "@/components/BottomNavigation";
 
-import { SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar";
+import { SidebarProvider, } from "@/components/ui/sidebar";
 import { SideBarNavigation } from "@/components/SideBarNavigation";
 
 export const metadata: Metadata = {

@@ -60,7 +60,6 @@ export default function Profile() {
           format: "json",
         },
       });
-      console.log(JSON.stringify(response.data));
       setMealLogs(response.data);
     } catch (error) {
       console.error("❌ Failed to fetch meal logs:", error);

@@ -42,9 +42,8 @@ const MenuTable: React.FC<MenuTableProps> = ({
   useEffect(() => {
     setMenuTable(null);
     setLoading(true);
-    console.log(allergies.join(","));
     axios
-      .get(`${process.env.NEXT_PUBLIC_BACKEND_URL}/api/menu`, {
+      .get(`${process.env.NEXT_PUBLIC_BACKEND_URL}/api/menu/`, {
         params: {
           meal_time: menuTime,
           meal_location: menuLocation,
@@ -151,7 +150,7 @@ const MenuTables: React.FC<{ item: DisplayTableOrdered }> = ({ item }) => {
   const fetchItemDetails = async (itemId: number) => {
     try {
       const response = await axios.get(
-        `http://localhost:8000/api/menu-item/${itemId}`
+        `${process.env.NEXT_PUBLIC_BACKEND_URL}/api/menu-item/${itemId}`
       );
       setItemDetails(response.data);
     } catch (error) {
