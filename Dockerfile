@@ -1,5 +1,5 @@
 
-FROM node:23-slim AS builder
+FROM node:24-slim AS builder
 
 WORKDIR /app
 
@@ -22,7 +22,7 @@ COPY . .
 RUN npm run build
 
 # 6. Use a lighter base image to serve the built app
-FROM node:23-slim AS runner
+FROM node:24-slim AS runner
 
 WORKDIR /app
 
