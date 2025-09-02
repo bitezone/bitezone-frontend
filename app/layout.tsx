@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 
 import "./globals.css";
+import { Analytics } from '@vercel/analytics/react'
 import { AuthProvider } from "@/context/auth-context";
 import BottomNavigation from "@/components/BottomNavigation";
 import { SideBarNavigation } from "@/components/SideBarNavigation";
@@ -42,6 +43,7 @@ export default function RootLayout({
             </div>
           </AuthProvider>
         </div>
+        <Analytics />
       </body>
     </html>
   );
