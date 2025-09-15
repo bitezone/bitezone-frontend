@@ -60,6 +60,7 @@ const MenuTable: React.FC<MenuTableProps> = ({
       .then((res) => {
         if (res.data.length == 1) {
           const preferredOrder: string[] = [
+            "Global Faire",
             "Entree",
             "Accompaniments",
             "Grill Station",
