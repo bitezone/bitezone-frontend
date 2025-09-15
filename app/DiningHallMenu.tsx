@@ -24,14 +24,6 @@ const DiningHallMenu = () => {
   return (
     <div className="min-h-screen p-6 flex flex-col items-center gap-5">
       <SignInAs />
-      <div className="max-w-xl mx-auto mt-6 rounded-2xl bg-yellow-100 border-l-4 border-yellow-500 p-4 shadow">
-        <p className="text-yellow-800 font-medium">
-          ⚠️ Due to late updates from the original dining hall, operations are
-          still in progress. Dining hall menus may not be fully accessible at
-          this time.
-        </p>
-      </div>
-
       <CalorieIndicator
         menuDate={menuDate}
         menuTime={menuTime}
@@ -51,7 +43,7 @@ const DiningHallMenu = () => {
         menuDate={menuDate}
         menuLocation={menuLocation}
       />
-      <MenuFilter setAllergies={setAllergies} />
+      <MenuFilter setAllergies={setAllergies}/>
       <MenuTable
         menuDate={menuDate}
         menuTime={menuTime}
