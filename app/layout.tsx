@@ -6,6 +6,7 @@ import { AuthProvider } from "@/context/auth-context";
 import BottomNavigation from "@/components/BottomNavigation";
 import { SideBarNavigation } from "@/components/SideBarNavigation";
 import { SidebarProvider } from "@/components/ui/sidebar";
+import { SpeedInsights } from "@vercel/speed-insights/next"
 
 export const metadata: Metadata = {
   title: "BiteZone",
@@ -35,6 +36,7 @@ export default function RootLayout({
               <main className="w-full bg-green-50">
                 {/* <SidebarTrigger className="hidden md:block p-5 hover:bg-transparent hover:text-inherit cursor-pointer" /> */}
                 {children}
+                <SpeedInsights />
               </main>
             </SidebarProvider>
 
