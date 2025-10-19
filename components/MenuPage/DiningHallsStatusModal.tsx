@@ -7,7 +7,6 @@ import {
   getAllDiningHallsStatus,
   formatTimeDisplay,
 } from "@/lib/diningHoursUtils";
-import { DiningHallName } from "@/types/dining-hours";
 
 interface DiningHallsStatusModalProps {
   currentDate?: Date;

@@ -61,17 +61,6 @@ export interface DiningHallStatusInfo {
   additionalServices?: AdditionalService[];
 }
 
-// Utility types for component props
-export interface DiningHallStatusCardProps {
-  menuLocation: DiningHallName;
-  menuDate: Date;
-  currentTime?: Date; // Optional, defaults to new Date()
-}
-
-export interface DiningHallsOverviewProps {
-  currentDate: Date;
-}
-
 // Helper type for mapping dining hall names
 export const DINING_HALL_NAME_MAP: Record<DiningHallName, string> = {
   cooper: "Cooper Dining Center",
