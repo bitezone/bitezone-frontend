@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useEffect, useState } from "react";
-import { Table, TableBody, TableCell, TableRow } from "@/components/ui/table";
+import { Table, TableBody } from "@/components/ui/table";
 import axios from "axios";
 import { motion } from "framer-motion";
 import { decodeHtmlEntities } from "@/lib/htmlUtils";
@@ -181,82 +181,111 @@ const MenuTables: React.FC<{ item: DisplayTableOrdered }> = ({ item }) => {
         <TableBody>
           {items.map((menu_item, index) => (
             <React.Fragment key={index}>
-              <TableRow
-                className="hover:bg-green-50 transition duration-200 cursor-pointer"
+              <div
+                className="hover:bg-green-50 active:bg-green-100 transition duration-200 cursor-pointer touch-manipulation border border-transparent hover:border-green-200 rounded-lg p-3 mb-2"
                 onClick={() => handleItemClick(menu_item.item_id)}
+                role="button"
+                tabIndex={0}
+                onKeyDown={(e) => {
+                  if (e.key === "Enter" || e.key === " ") {
+                    e.preventDefault();
+                    handleItemClick(menu_item.item_id);
+                  }
+                }}
+                aria-label={`View details for ${decodeHtmlEntities(
+                  menu_item.name
+                )}`}
               >
-                <TableCell className="text-green-900 text-sm whitespace-normal flex flex-row items-center justify-between">
-                  <p>{decodeHtmlEntities(menu_item.name)}</p>
-                  <QuantitySelector id={menu_item.item_id} />
-                </TableCell>
-              </TableRow>
+                <div className="flex items-center justify-between">
+                  <p className="text-green-900 text-sm font-medium flex-1">
+                    {decodeHtmlEntities(menu_item.name)}
+                  </p>
+                  <div className="flex items-center gap-3">
+                    <QuantitySelector id={menu_item.item_id} />
+                    <svg
+                      className={`w-4 h-4 text-green-500 transition-transform duration-200 ${
+                        expandedItemId === menu_item.item_id ? "rotate-90" : ""
+                      }`}
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                      aria-hidden="true"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth={2}
+                        d="M9 5l7 7-7 7"
+                      />
+                    </svg>
+                  </div>
+                </div>
+              </div>
 
               {expandedItemId === menu_item.item_id && (
-                <TableRow className="bg-green-50">
-                  <TableCell className="px-4 py-3">
-                    {itemDetails ? (
-                      <div className="pl-4 py-2 text-sm space-y-2">
-                        <div className="flex gap-4">
-                          <div className="font-medium text-green-800">
-                            <span className="font-bold">Serving Size:</span>{" "}
-                            {itemDetails.serving_size}
-                          </div>
-                          <div className="font-medium text-green-800">
-                            <span className="font-bold">Calories:</span>{" "}
-                            {itemDetails.calories_per_serving}
-                          </div>
+                <div className="bg-green-50 border-l-4 border-green-400 rounded-lg p-4 mb-2">
+                  {itemDetails ? (
+                    <div className="pl-4 py-2 text-sm space-y-2">
+                      <div className="flex gap-4">
+                        <div className="font-medium text-green-800">
+                          <span className="font-bold">Serving Size:</span>{" "}
+                          {itemDetails.serving_size}
                         </div>
-
-                        <div>
-                          <div className="font-bold text-green-800 mb-1">
-                            Ingredients:
-                          </div>
-                          {itemDetails.ingredients &&
-                          itemDetails.ingredients.length > 0 ? (
-                            <ul className="list-disc pl-5 text-green-700 text-xs text-wrap">
-                              {itemDetails.ingredients.map(
-                                (ingredient: string, i: number) => (
-                                  <li key={i}>{ingredient}</li>
-                                )
-                              )}
-                            </ul>
-                          ) : (
-                            <div className="text-xs text-red-500">
-                              No ingredients listed
-                            </div>
-                          )}
-                        </div>
-
-                        <div className="mt-2">
-                          <div className="font-bold text-green-800 mb-1">
-                            Allergies:
-                          </div>
-                          {itemDetails.allergies &&
-                          itemDetails.allergies.length > 0 ? (
-                            <div className="flex flex-wrap gap-1">
-                              {itemDetails.allergies.map(
-                                (allergy: string, i: number) => (
-                                  <span
-                                    key={i}
-                                    className="px-2 py-1 bg-red-100 text-red-800 rounded-full text-xs"
-                                  >
-                                    {allergy}
-                                  </span>
-                                )
-                              )}
-                            </div>
-                          ) : (
-                            <div className="text-xs ">No allergies listed</div>
-                          )}
+                        <div className="font-medium text-green-800">
+                          <span className="font-bold">Calories:</span>{" "}
+                          {itemDetails.calories_per_serving}
                         </div>
                       </div>
-                    ) : (
-                      <div className="text-center py-2">
-                        Attempting to load...
+
+                      <div>
+                        <div className="font-bold text-green-800 mb-1">
+                          Ingredients:
+                        </div>
+                        {itemDetails.ingredients &&
+                        itemDetails.ingredients.length > 0 ? (
+                          <ul className="list-disc pl-5 text-green-700 text-xs text-wrap">
+                            {itemDetails.ingredients.map(
+                              (ingredient: string, i: number) => (
+                                <li key={i}>{ingredient}</li>
+                              )
+                            )}
+                          </ul>
+                        ) : (
+                          <div className="text-xs text-red-500">
+                            No ingredients listed
+                          </div>
+                        )}
                       </div>
-                    )}
-                  </TableCell>
-                </TableRow>
+
+                      <div className="mt-2">
+                        <div className="font-bold text-green-800 mb-1">
+                          Allergies:
+                        </div>
+                        {itemDetails.allergies &&
+                        itemDetails.allergies.length > 0 ? (
+                          <div className="flex flex-wrap gap-1">
+                            {itemDetails.allergies.map(
+                              (allergy: string, i: number) => (
+                                <span
+                                  key={i}
+                                  className="px-2 py-1 bg-red-100 text-red-800 rounded-full text-xs"
+                                >
+                                  {allergy}
+                                </span>
+                              )
+                            )}
+                          </div>
+                        ) : (
+                          <div className="text-xs ">No allergies listed</div>
+                        )}
+                      </div>
+                    </div>
+                  ) : (
+                    <div className="text-center py-2">
+                      Attempting to load...
+                    </div>
+                  )}
+                </div>
               )}
             </React.Fragment>
           ))}
