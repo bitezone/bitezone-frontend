@@ -6,8 +6,8 @@ import {
   SidebarMenu,
   SidebarMenuButton,
   SidebarMenuItem,
-} from "@/components/ui/sidebar"
- 
+} from "@/components/ui/sidebar";
+
 // Menu items.
 const items = [
   {
@@ -18,8 +18,12 @@ const items = [
     title: "Profile",
     url: "/profile",
   },
-]
- 
+  {
+    title: "Settings",
+    url: "/settings",
+  },
+];
+
 export function SideBarNavigation() {
   return (
     <Sidebar>
@@ -41,5 +45,5 @@ export function SideBarNavigation() {
         </SidebarGroup>
       </SidebarContent>
     </Sidebar>
-  )
+  );
 }
