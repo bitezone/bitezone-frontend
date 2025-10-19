@@ -1,0 +1,300 @@
+{
+  "diningHalls": [
+    {
+      "name": "Cooper Dining Center",
+      "meals": [
+        {
+          "type": "breakfast",
+          "name": "Hot Continental Breakfast with Eggs to Order",
+          "daysOfWeek": [
+            "Monday",
+            "Tuesday",
+            "Wednesday",
+            "Thursday",
+            "Friday"
+          ],
+          "openTime": "07:30",
+          "closeTime": "10:30"
+        },
+        {
+          "type": "lunch",
+          "name": "Lunch",
+          "daysOfWeek": [
+            "Monday",
+            "Tuesday",
+            "Wednesday",
+            "Thursday",
+            "Friday"
+          ],
+          "openTime": "11:00",
+          "closeTime": "14:30"
+        },
+        {
+          "type": "brunch",
+          "name": "Brunch",
+          "daysOfWeek": ["Saturday", "Sunday"],
+          "openTime": "10:00",
+          "closeTime": "14:00"
+        },
+        {
+          "type": "dinner",
+          "name": "Dinner",
+          "daysOfWeek": [
+            "Monday",
+            "Tuesday",
+            "Wednesday",
+            "Thursday",
+            "Friday",
+            "Saturday",
+            "Sunday"
+          ],
+          "openTime": "16:30",
+          "closeTime": "19:00",
+          "additionalServices": [
+            {
+              "name": "The Creamery",
+              "daysOfWeek": [
+                "Sunday",
+                "Monday",
+                "Tuesday",
+                "Wednesday",
+                "Thursday"
+              ],
+              "openTime": "16:30",
+              "closeTime": "23:00",
+              "note": "Available during and after dinner hours"
+            }
+          ]
+        },
+        {
+          "type": "latenight",
+          "name": "Late Night",
+          "daysOfWeek": [
+            "Monday",
+            "Tuesday",
+            "Wednesday",
+            "Thursday",
+            "Friday",
+            "Saturday",
+            "Sunday"
+          ],
+          "openTime": "20:30",
+          "closeTime": "23:00",
+          "startDate": "2025-08-29"
+        }
+      ]
+    },
+    {
+      "name": "Lakeside Dining Center",
+      "meals": [
+        {
+          "type": "breakfast",
+          "name": "Hot Continental Breakfast with Eggs to Order",
+          "daysOfWeek": [
+            "Monday",
+            "Tuesday",
+            "Wednesday",
+            "Thursday",
+            "Friday"
+          ],
+          "openTime": "07:30",
+          "closeTime": "10:30"
+        },
+        {
+          "type": "lunch",
+          "name": "Lunch",
+          "daysOfWeek": [
+            "Monday",
+            "Tuesday",
+            "Wednesday",
+            "Thursday",
+            "Friday"
+          ],
+          "openTime": "10:30",
+          "closeTime": "14:00"
+        },
+        {
+          "type": "brunch",
+          "name": "Brunch",
+          "daysOfWeek": ["Saturday", "Sunday"],
+          "openTime": "10:00",
+          "closeTime": "14:00"
+        },
+        {
+          "type": "dinner",
+          "name": "Dinner",
+          "daysOfWeek": [
+            "Monday",
+            "Tuesday",
+            "Wednesday",
+            "Thursday",
+            "Friday",
+            "Saturday",
+            "Sunday"
+          ],
+          "openTime": "16:30",
+          "closeTime": "20:30",
+          "additionalServices": [
+            {
+              "name": "Global Faire",
+              "daysOfWeek": [
+                "Sunday",
+                "Monday",
+                "Tuesday",
+                "Wednesday",
+                "Thursday"
+              ],
+              "openTime": "15:00",
+              "closeTime": "20:30"
+            },
+            {
+              "name": "Pizza & Deli",
+              "daysOfWeek": ["Friday", "Saturday"],
+              "openTime": "15:00",
+              "closeTime": "20:30"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Pathfinder Dining Center",
+      "meals": [
+        {
+          "type": "breakfast",
+          "name": "Breakfast",
+          "daysOfWeek": [
+            "Monday",
+            "Tuesday",
+            "Wednesday",
+            "Thursday",
+            "Friday"
+          ],
+          "openTime": "07:00",
+          "closeTime": "10:00"
+        },
+        {
+          "type": "breakfast",
+          "name": "Continental Breakfast",
+          "daysOfWeek": [
+            "Monday",
+            "Tuesday",
+            "Wednesday",
+            "Thursday",
+            "Friday"
+          ],
+          "openTime": "10:00",
+          "closeTime": "11:00"
+        },
+        {
+          "type": "lunch",
+          "name": "Lunch",
+          "daysOfWeek": [
+            "Monday",
+            "Tuesday",
+            "Wednesday",
+            "Thursday",
+            "Friday"
+          ],
+          "openTime": "11:00",
+          "closeTime": "15:00",
+          "additionalServices": [
+            {
+              "name": "BBQ",
+              "daysOfWeek": [
+                "Monday",
+                "Tuesday",
+                "Wednesday",
+                "Thursday",
+                "Friday"
+              ],
+              "openTime": "11:00",
+              "closeTime": "15:00"
+            },
+            {
+              "name": "Pizza/Pasta (Rotation)",
+              "daysOfWeek": [
+                "Monday",
+                "Tuesday",
+                "Wednesday",
+                "Thursday",
+                "Friday"
+              ],
+              "openTime": "11:00",
+              "closeTime": "15:00"
+            }
+          ]
+        },
+        {
+          "type": "brunch",
+          "name": "Brunch",
+          "daysOfWeek": ["Saturday", "Sunday"],
+          "openTime": "09:00",
+          "closeTime": "14:00",
+          "additionalServices": [
+            {
+              "name": "BBQ",
+              "daysOfWeek": ["Saturday", "Sunday"],
+              "openTime": "11:00",
+              "closeTime": "14:00"
+            }
+          ]
+        },
+        {
+          "type": "dinner",
+          "name": "Dinner",
+          "daysOfWeek": [
+            "Monday",
+            "Tuesday",
+            "Wednesday",
+            "Thursday",
+            "Friday"
+          ],
+          "openTime": "16:30",
+          "closeTime": "19:30",
+          "additionalServices": [
+            {
+              "name": "BBQ",
+              "daysOfWeek": [
+                "Monday",
+                "Tuesday",
+                "Wednesday",
+                "Thursday",
+                "Friday"
+              ],
+              "openTime": "16:30",
+              "closeTime": "19:30"
+            },
+            {
+              "name": "Pizza/Pasta (Rotation)",
+              "daysOfWeek": [
+                "Monday",
+                "Tuesday",
+                "Wednesday",
+                "Thursday",
+                "Friday"
+              ],
+              "openTime": "16:30",
+              "closeTime": "18:30"
+            }
+          ]
+        },
+        {
+          "type": "dinner",
+          "name": "Dinner",
+          "daysOfWeek": ["Saturday", "Sunday"],
+          "openTime": "16:30",
+          "closeTime": "19:00",
+          "additionalServices": [
+            {
+              "name": "BBQ",
+              "daysOfWeek": ["Saturday", "Sunday"],
+              "openTime": "16:30",
+              "closeTime": "19:00"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
