@@ -23,7 +23,7 @@ const DiningHallMenu = () => {
 
   return (
     <div className="min-h-screen p-6 flex flex-col items-center gap-5">
-      <SignInAs />
+      <SignInAs currentDate={menuDate} />
       <CalorieIndicator
         menuDate={menuDate}
         menuTime={menuTime}
@@ -43,7 +43,7 @@ const DiningHallMenu = () => {
         menuDate={menuDate}
         menuLocation={menuLocation}
       />
-      <MenuFilter setAllergies={setAllergies}/>
+      <MenuFilter setAllergies={setAllergies} />
       <MenuTable
         menuDate={menuDate}
         menuTime={menuTime}
