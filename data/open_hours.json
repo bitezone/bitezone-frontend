@@ -61,8 +61,8 @@
                 "Thursday"
               ],
               "openTime": "16:30",
-              "closeTime": "23:00",
-              "note": "Available during and after dinner hours"
+              "closeTime": "19:00",
+              "note": "Available during dinner hours (4:30-7:00 PM), closed 7:00-8:30 PM, reopens 8:30-11:00 PM"
             }
           ]
         },
@@ -80,7 +80,22 @@
           ],
           "openTime": "20:30",
           "closeTime": "23:00",
-          "startDate": "2025-08-29"
+          "startDate": "2025-08-29",
+          "additionalServices": [
+            {
+              "name": "The Creamery",
+              "daysOfWeek": [
+                "Sunday",
+                "Monday",
+                "Tuesday",
+                "Wednesday",
+                "Thursday"
+              ],
+              "openTime": "20:30",
+              "closeTime": "23:00",
+              "note": "Reopens after dinner closure"
+            }
+          ]
         }
       ]
     },
