@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { HandPlatter, User } from "lucide-react";
+import { HandPlatter, User, Settings } from "lucide-react";
 
 const items = [
   {
@@ -10,7 +10,12 @@ const items = [
   {
     title: "Profile",
     url: "/profile",
-    icon: <User />,
+    icon: <User className="h-6 w-6" />,
+  },
+  {
+    title: "Settings",
+    url: "/settings",
+    icon: <Settings className="h-6 w-6" />,
   },
 ];
 
@@ -21,7 +26,6 @@ export default function BottomNavigation() {
         <Link
           href={item.url}
           className="flex flex-col items-center justify-center gap-1 text-gray-500 transition-colors hover:text-gray-900 focus:text-gray-900 dark:text-gray-400 dark:hover:text-gray-50 dark:focus:text-gray-50"
-       
           key={ind}
         >
           {item.icon}
