@@ -17,7 +17,7 @@ import { Separator } from "@/components/ui/separator";
 import { format } from "date-fns";
 import { useEffect, useState } from "react";
 
-const Settings = () => {
+const About = () => {
   const [data, setData] = useState<StatusData | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
@@ -53,7 +53,7 @@ const Settings = () => {
     return (
       <div className="min-h-screen p-6 max-w-6xl mx-auto space-y-8">
         <div className="text-center space-y-2">
-          <h1 className="text-3xl font-bold text-gray-900">Settings</h1>
+          <h1 className="text-3xl font-bold text-gray-900">About</h1>
           <p className="text-gray-600">
             Manage your preferences and stay updated with BiteZone
           </p>
@@ -72,7 +72,7 @@ const Settings = () => {
     return (
       <div className="min-h-screen p-6 max-w-6xl mx-auto space-y-8">
         <div className="text-center space-y-2">
-          <h1 className="text-3xl font-bold text-gray-900">Settings</h1>
+          <h1 className="text-3xl font-bold text-gray-900">About</h1>
           <p className="text-gray-600">
             Manage your preferences and stay updated with BiteZone
           </p>
@@ -110,7 +110,7 @@ const Settings = () => {
     <div className="min-h-screen p-6 max-w-6xl mx-auto space-y-8">
       {/* Header */}
       <div className="text-center space-y-2">
-        <h1 className="text-3xl font-bold text-gray-900">Settings</h1>
+        <h1 className="text-3xl font-bold text-gray-900">About</h1>
         <p className="text-gray-600">
           Manage your preferences and stay updated with BiteZone
         </p>
@@ -212,4 +212,4 @@ const Settings = () => {
   );
 };
 
-export default Settings;
+export default About;

@@ -13,8 +13,8 @@ const items = [
     icon: <User className="h-6 w-6" />,
   },
   {
-    title: "Settings",
-    url: "/settings",
+    title: "About",
+    url: "/about",
     icon: <Settings className="h-6 w-6" />,
   },
 ];

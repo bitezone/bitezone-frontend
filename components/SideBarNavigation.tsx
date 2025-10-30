@@ -19,8 +19,8 @@ const items = [
     url: "/profile",
   },
   {
-    title: "Settings",
-    url: "/settings",
+    title: "About",
+    url: "/about",
   },
 ];
 
