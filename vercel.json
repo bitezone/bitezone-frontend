@@ -1,0 +1,19 @@
+{
+  "redirects": [
+    {
+      "source": "https://oswegodining.com/:path*",
+      "destination": "https://www.oswegodining.com/:path*",
+      "permanent": true
+    },
+    {
+      "source": "http://oswegodining.com/:path*",
+      "destination": "https://www.oswegodining.com/:path*",
+      "permanent": true
+    },
+    {
+      "source": "http://www.oswegodining.com/:path*",
+      "destination": "https://www.oswegodining.com/:path*",
+      "permanent": true
+    }
+  ]
+}

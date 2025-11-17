@@ -10,6 +10,7 @@ import { SpeedInsights } from "@vercel/speed-insights/next";
 import GoogleAnalytics from "@/components/GoogleAnalytics";
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://www.oswegodining.com"),
   title: "SUNY Oswego Dining Halls - Menus, Hours & Nutrition Info",
   description:
     "View dining hall menus and hours for SUNY Oswego. Fast access to all campus dining halls - Lakeside Dining Hall, Cooper Dining Hall and Pathfinder Dining Hall. Updated daily.",
@@ -20,10 +21,13 @@ export const metadata: Metadata = {
     "oswego dining halls",
     "suny oswego campus dining",
   ],
+  alternates: {
+    canonical: "/", // Add this
+  },
   openGraph: {
     title: "SUNY Oswego Dining Halls",
     description: "Fast, easy access to SUNY Oswego dining information",
-    url: "https://oswegodining.com",
+    url: "https://www.oswegodining.com",
     siteName: "Oswego Dining",
     locale: "en_US",
     type: "website",
