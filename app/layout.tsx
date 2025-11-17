@@ -9,9 +9,18 @@ import { SidebarProvider } from "@/components/ui/sidebar";
 import { SpeedInsights } from "@vercel/speed-insights/next"
 
 export const metadata: Metadata = {
-  title: "BiteZone",
-  description: "A place where dining takes fast",
-};
+  title: 'SUNY Oswego Dining Halls - Menus, Hours & Nutrition Info',
+  description: 'View dining hall menus and hours for SUNY Oswego. Fast access to all campus dining halls - Lakeside Dining Hall, Cooper Dining Hall and Pathfinder Dining Hall. Updated daily.',
+  keywords: ['oswego dining', 'suny oswego dining hall', 'dining hall menu', 'oswego dining halls', 'suny oswego campus dining'],
+  openGraph: {
+    title: 'SUNY Oswego Dining Halls',
+    description: 'Fast, easy access to SUNY Oswego dining information',
+    url: 'https://oswegodining.com',
+    siteName: 'Oswego Dining',
+    locale: 'en_US',
+    type: 'website',
+  },
+}
 
 export default function RootLayout({
   children,
