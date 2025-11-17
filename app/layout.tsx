@@ -7,6 +7,7 @@ import BottomNavigation from "@/components/BottomNavigation";
 import { SideBarNavigation } from "@/components/SideBarNavigation";
 import { SidebarProvider } from "@/components/ui/sidebar";
 import { SpeedInsights } from "@vercel/speed-insights/next"
+import GoogleAnalytics from "@/components/GoogleAnalytics"
 
 export const metadata: Metadata = {
   title: 'SUNY Oswego Dining Halls - Menus, Hours & Nutrition Info',
@@ -30,6 +31,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body>
+        <GoogleAnalytics GA_MEASUREMENT_ID={process.env.NEXT_PUBLIC_GA_ID!} />
         <div>
           <AuthProvider>
             <SidebarProvider
