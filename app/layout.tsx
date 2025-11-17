@@ -41,6 +41,24 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
+      <head>
+        {/* Structured data for Google */}
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "Organization",
+              name: "Oswego Dining",
+              url: "https://www.oswegodining.com",
+              logo: "https://www.oswegodining.com/android-chrome-512x512.png",
+              description: "SUNY Oswego dining hall menus and hours",
+              sameAs: [
+              ],
+            }),
+          }}
+        />
+      </head>
       <body>
         <GoogleAnalytics GA_MEASUREMENT_ID={process.env.NEXT_PUBLIC_GA_ID!} />
         <div>
