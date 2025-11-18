@@ -31,6 +31,13 @@ export const metadata: Metadata = {
     siteName: "Oswego Dining",
     locale: "en_US",
     type: "website",
+    images: [
+      {
+        url: "https://www.oswegodining.com/android-chrome-512x512.png",
+        width: 512,
+        height: 512,
+      },
+    ],
   },
 };
 
@@ -42,7 +49,6 @@ export default function RootLayout({
   return (
     <html lang="en">
       <head>
-        {/* Structured data for Google */}
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{
@@ -53,8 +59,7 @@ export default function RootLayout({
               url: "https://www.oswegodining.com",
               logo: "https://www.oswegodining.com/android-chrome-512x512.png",
               description: "SUNY Oswego dining hall menus and hours",
-              sameAs: [
-              ],
+              sameAs: [],
             }),
           }}
         />
